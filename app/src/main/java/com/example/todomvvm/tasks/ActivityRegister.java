@@ -49,7 +49,7 @@ public class ActivityRegister extends AppCompatActivity {
         email = findViewById(R.id.register_email);
         password = findViewById(R.id.register_password);
         registerButton = findViewById(R.id.register_user);
-        cancelButton = findViewById(R.id.cancel_user);
+
 
         taskDaoO = Room.databaseBuilder(this, AppDatabase.class, "bibhas-database.db")
                 .allowMainThreadQueries()

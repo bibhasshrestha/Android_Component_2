@@ -11,4 +11,9 @@
     <color name="materialOrange">#E67E22</color>
     <color name="materialYellow">#F1C40F</color>
 
+    <!-- colors for button -->
+    <color name="button">#673AB7</color>
+    <color name="button2">#D8491C</color>
+    <color name="text">#E8E4D6</color>
+
 </resources>
