@@ -13,18 +13,32 @@ public class TaskEntry {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String description;
+
+    public int getUserRelationId() {
+        return userRelationId;
+    }
+
+    public void setUserRelationId(int userRelationId) {
+        this.userRelationId = userRelationId;
+    }
+
+    private int userRelationId;
     private int priority;
     @ColumnInfo(name="updated_at")
     private Date updatedAt;
 
     @Ignore
     public TaskEntry(String description, int priority, Date updatedAt) {
+
+
         this.description = description;
         this.priority = priority;
         this.updatedAt = updatedAt;
     }
 
-    public TaskEntry(int id, String description, int priority, Date updatedAt) {
+    public TaskEntry(int id, String description, int priority, Date updatedAt, int userRelationId) {
+
+        this.userRelationId=userRelationId;
         this.id = id;
         this.description = description;
         this.priority = priority;
