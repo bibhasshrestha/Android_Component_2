@@ -29,6 +29,15 @@ public class Repository {
         });
     }
 
+    public void deleteAllNotes(){
+        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                dao.deleteallTask();
+            }
+        });
+    }
+
     public void deleteTask(final TaskEntry task){
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override

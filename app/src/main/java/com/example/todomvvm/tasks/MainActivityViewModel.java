@@ -36,4 +36,8 @@ public class MainActivityViewModel extends AndroidViewModel {
         repository.deleteTask(task);
     }
 
+    public void deleteAllNotes(){
+        repository.deleteAllNotes();
+    }
+
 }

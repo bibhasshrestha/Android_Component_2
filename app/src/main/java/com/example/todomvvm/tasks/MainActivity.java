@@ -1,5 +1,6 @@
 package com.example.todomvvm.tasks;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -15,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.todomvvm.addedittask.AddEditTaskActivity;
 import com.example.todomvvm.R;
@@ -116,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate( R.menu.search_todo, menu );
+        inflater.inflate( R.menu.delete_menu, menu );
 
         MenuItem searchItem = menu.findItem( R.id.android_search );
         SearchView searchView = (SearchView) searchItem.getActionView();
@@ -133,5 +136,19 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
         } );
 
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.delete_all_notes:
+                viewModel.deleteAllNotes();
+                Toast.makeText(this, "Deleted all Notes", Toast.LENGTH_SHORT).show();
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }
