@@ -14,3 +14,4 @@
 2. Search functionality
 3. Swipe to Delete
 4. Add Activity with Priority
+5. Delete all Notes
