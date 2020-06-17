@@ -15,3 +15,4 @@
 3. Swipe to Delete
 4. Add Activity with Priority
 5. Delete all Notes
+5. Login and Registration
