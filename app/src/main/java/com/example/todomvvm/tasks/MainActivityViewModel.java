@@ -25,11 +25,13 @@ public class MainActivityViewModel extends AndroidViewModel {
         super(application);
         AppDatabase database = AppDatabase.getInstance(application);
         repository = new Repository(database);
-        tasks = repository.getTasks();
+
     }
 
-    public LiveData<List<TaskEntry>> getTasks(){
-        return tasks;
+    public LiveData<List<TaskEntry>> getTasks(int user_id){
+
+        return repository.getTasks(user_id);
+
     }
 
     public void deleteTask(TaskEntry task){

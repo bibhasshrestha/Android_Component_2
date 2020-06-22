@@ -44,6 +44,7 @@
         android:layout_width="130dp"
         android:layout_height="65dp"
         android:background="@color/button"
+        android:onClick="login"
         android:text="Log In"
         android:textColor="@color/text"
         android:textSize="20dp"

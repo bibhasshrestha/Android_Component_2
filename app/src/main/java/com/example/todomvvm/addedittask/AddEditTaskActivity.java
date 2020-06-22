@@ -19,6 +19,7 @@ import com.example.todomvvm.R;
 import com.example.todomvvm.database.AppDatabase;
 import com.example.todomvvm.database.Repository;
 import com.example.todomvvm.database.TaskEntry;
+import com.example.todomvvm.database.repoUser;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,6 +27,7 @@ import java.util.Locale;
 
 public class AddEditTaskActivity extends AppCompatActivity {
 
+    private int user_id;
     // Extra for the task ID to be received in the intent
     public static final String EXTRA_TASK_ID = "extraTaskId";
     // Extra for the task ID to be received after rotation
@@ -53,6 +55,7 @@ public class AddEditTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_task);
 
+        user_id=Integer.parseInt(getIntent().getStringExtra("userId"));
 
 
         initViews();
@@ -155,7 +158,9 @@ public class AddEditTaskActivity extends AppCompatActivity {
         String description = mEditText.getText().toString();
         int priority = getPriorityFromViews();
         Date date = new Date();
-        TaskEntry todo = new TaskEntry(description, priority, date);
+
+        TaskEntry todo = new TaskEntry(description, priority, date, user_id);
+
         if(mTaskId == DEFAULT_TASK_ID)
             viewModel.insertTask(todo);
         else{

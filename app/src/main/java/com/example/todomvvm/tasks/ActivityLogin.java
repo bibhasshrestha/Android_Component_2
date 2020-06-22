@@ -1,23 +1,20 @@
 package com.example.todomvvm.tasks;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.todomvvm.R;
 import com.example.todomvvm.database.AppDatabase;
 import com.example.todomvvm.database.TaskDao;
-import com.example.todomvvm.database.User;
-import java.util.Objects;
+import com.example.todomvvm.database.repoUser;
 
 public class ActivityLogin extends AppCompatActivity {
     private Button signIn;
@@ -27,6 +24,7 @@ public class ActivityLogin extends AppCompatActivity {
     private AppDatabase database;
     private TaskDao taskDao;
     private ProgressDialog progressDialog;
+    private com.example.todomvvm.database.repoUser repouser;
 
 
     @Override
@@ -39,60 +37,37 @@ public class ActivityLogin extends AppCompatActivity {
         progressDialog.setMessage("Checking user");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setProgress(0);
-
-        database = Room.databaseBuilder(this, AppDatabase.class, "bibhas-database.db")
-                .allowMainThreadQueries()
-
-                .build();
-        taskDao = database.taskDao();
+        database= AppDatabase.getInstance(this);
+        repouser=new repoUser(database);
         signIn = findViewById(R.id.SignIn);
         signUp = findViewById(R.id.Register);
         userEmail = findViewById(R.id.user_email);
         userPassword = findViewById(R.id.user_Password);
 
 
-        signUp.setOnClickListener(new View.OnClickListener() {
+
+
+            signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ActivityLogin.this, ActivityRegister.class));
             }
         });
-
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!emptyValidation()) {
-                    progressDialog.show();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            User user = taskDao.getUser(userEmail.getText().toString(), userPassword.getText().toString());
-                            if (user != null) {
-                                Intent i = new Intent(ActivityLogin.this, MainActivity.class);
-                                i.putExtra("User", user);
-                                startActivity(i);
-                                finish();
-                            } else {
-                                Toast.makeText(ActivityLogin.this, "ID password Error", Toast.LENGTH_SHORT).show();
-                            }
-                            progressDialog.dismiss();
-                        }
-                    }, 1000);
-                }
-
-
-            }
-        });
-
-
     }
 
-    private boolean emptyValidation() {
-        if (TextUtils.isEmpty(userEmail.getText().toString()) || TextUtils.isEmpty(userPassword.getText().toString())) {
+    private class AsyncLogin extends AsyncTask<Void,Void,Void>{
 
-            return true;
-        } else {
-            return false;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            int userId = repouser.getUser(userEmail.getText().toString(), userPassword.getText().toString());
+            if (userId != 0) {
+                Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
+                intent.putExtra("userId", Integer.toString(userId));
+                startActivity(intent);
+            } else {
+                Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
+            }
+            return null;
         }
     }
 
@@ -101,5 +76,9 @@ public class ActivityLogin extends AppCompatActivity {
         finishAffinity();
         finish();
 
+    }
+
+    public void login(View view) {
+        new AsyncLogin().execute();
     }
 }
