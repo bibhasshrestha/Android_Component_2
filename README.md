@@ -19,11 +19,11 @@
 
 ### Screenshots  
 
-Register          |  Log-In                      | Search              |              Add New Task   
+Register          |  Log-In                      | Search              |       <p align=center>Add New Task</p>   
 :----------------------------:|:--------------------------------------:|:---------------------------:|:------------------
 <img src = "https://raw.githubusercontent.com/bibhasshrestha/Android_Component_2/master/Screenshots/Screenshot_20200617-233342.jpg" width="200" height="360">  |  <img src = "https://raw.githubusercontent.com/bibhasshrestha/Android_Component_2/master/Screenshots/Screenshot_20200617-233337.jpg" width="200" height="360">        |  <img src = "https://raw.githubusercontent.com/bibhasshrestha/Android_Component_2/master/Screenshots/Screenshot_20200617-233337.jpg" width="200" height="360">  | <img src = "https://raw.githubusercontent.com/bibhasshrestha/Android_Component_2/master/Screenshots/Screenshot_20200617-233634.jpg" width="200" height="360">
 #
-Speech to Text          |  Delete All Notes                     | To Do List              
+Speech to Text          |  Delete All Notes                     | <p align=center>To Do List</p>              
 :----------------------------:|:--------------------------------------:|:----------------------
 <img src = "https://raw.githubusercontent.com/bibhasshrestha/Android_Component_2/master/Screenshots/Screenshot_20200617-233957.jpg" width="200" height="360">  |  <img src = "https://raw.githubusercontent.com/bibhasshrestha/Android_Component_2/master/Screenshots/Screenshot_20200617-233511.jpg" width="200" height="360">        |  <img src = "https://github.com/bibhasshrestha/Android_Component_2/blob/master/Screenshots/Screenshot_20200617-233405.jpg" width="200" height="360">
 
